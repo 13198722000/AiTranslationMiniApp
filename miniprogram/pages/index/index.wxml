@@ -1,0 +1,44 @@
+<view class="container">
+<view id="top">
+</view>
+  <view class="content">
+    <view class="mainBody">
+        <view class="input-wrapper">
+          <textarea class="input-area" placeholder="请输入需要翻译的文字" bindinput="onInput" maxlength="2048"></textarea>
+          <view class="icon-buttons">
+            <button class="icon-button" wx:if="inputBut" bindtap="onVoiceInput">
+              <image class="icon" src="../../public/语音.png" mode="aspectFit"></image>
+            </button>
+            <button class="icon-button" bindtap="onImageUpload">
+              <image class="icon" src="../../public/imageUp.png" mode="aspectFit"></image>
+            </button>
+          </view>
+          <view class="TranButBlock">
+          </view>
+        </view>
+        <view class="center-wrapper">
+            <view>
+            </view>
+            <view class="translationBut">
+              翻译为
+            </view>
+            <button class="selectBut" bindtap="onVoiceInput">
+              <view class="language">
+                {{nowLanguage}}
+              </view>
+              <image class="icon selectIcon" src="../../public/option.png" mode="aspectFit"></image>
+            </button>
+        </view>
+        <view class="output-wrapper">
+          <textarea class="input-area" disabled bindinput="onInput"  maxlength="4096"></textarea>
+          <view class="icon-buttons">
+            <button class="icon-button" bindtap="onImageUpload">
+              <image class="icon copyIcon" src="../../public/copy.png" mode="aspectFit"></image>
+            </button>
+          </view>
+          <view class="TranButBlock">
+          </view>
+        </view>
+    </view>
+  </view>
+</view>
