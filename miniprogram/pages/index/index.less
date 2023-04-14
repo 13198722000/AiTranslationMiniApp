@@ -1,54 +1,85 @@
 .container {
-  min-height: 70vh;
+  height: 100%;
   background-color: #f0f0f0;
 }
-.content{
+.dialog_title{
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+}
+.dialog_inner{
   width: 100%;
-}
-.input-wrapper {
-  position: relative;
-  width: 80%;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius:13px 13px 0 0;
-  padding: 20px;
-}
-.center-wrapper{
-  position: relative;
-  width: 80%;
-  background-color: #ffffff;
-  border-top: 0.5px solid rgba(0, 0, 0, 0.1);
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
-  padding: 12px;
-  padding-left: 20px;
-  padding-right: 20px;
   display: flex;
-  right: 0px;
-  bottom: 0;
-  height: 50px;
-  justify-content: space-around;
+  border-top: 1px solid #eee;
+  .dialog_btn{
+    width: 50%;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    &.cancel{
+      border-right: 1px solid #eee;
+    }
+    &.button{
+      padding: 0 !important;
+    }
+  }
 }
-.output-wrapper {
-  position: relative;
-  width: 80%;
-  background-color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  border-radius: 0 0 13px 13px;
-  padding: 20px;
+.content{
+  box-sizing: border-box;
+  padding: 0 35rpx;
+  width: 100%;
+  height: calc(100% - 150rpx);
+  transform: translateY(-180rpx);
+  .mainBody{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    // margin-top: 20rpx;
+    .input-wrapper {
+      box-sizing: border-box;
+      position: relative;
+      width: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius:13px 13px 0 0;
+      padding: 15px;
+    }
+    .center-wrapper{
+      box-sizing: border-box;
+      position: relative;
+      width: 100%;
+      background-color: #ffffff;
+      border-top: 0.5px solid rgba(0, 0, 0, 0.1);
+      border-bottom: 0.5px solid rgba(0, 0, 0, 0.1);
+      padding: 20rpx;
+      display: flex;
+      justify-content: space-between;
+    }
+    .output-wrapper {
+      box-sizing: border-box;
+      position: relative;
+      width: 100%;
+      background-color: #ffffff;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      border-radius: 0 0 13px 13px;
+      padding: 20px;
+    }
+  }
 }
 .input-area {
   width: 100%;
-  min-height: 150px;
+  height: 350rpx;
   border: none;
   resize: none;
   font-size: 16px;
 }
 
 .icon-buttons {
-  position: absolute;
+  // position: absolute;
   display: flex;
-  right: -8px;
-  bottom: 10px;
+  // right: -8px;
+  // bottom: 10px;
 }
 .dropdown {
   background-color: #f8f8f8;
@@ -93,7 +124,7 @@
   align-items: center;
   background-color: transparent;
   cursor: pointer;
-  margin-left: 10px;
+  // margin-left: 10px;
 }
 
 .output-button{
@@ -112,44 +143,57 @@
   width: 15px;
 }
 .selectBut{
+  height: 65rpx;
   display: flex;
   justify-content:space-around;
-  border: 3px solid rgb(87, 79, 194);
+  align-items: center;
+  border: 8rpx solid #6258eb;
   border-radius:10px;
-  padding-left: 10px ;
-  padding-right: 0px ;
-  margin-left: 2vw !important;
-  width:auto !important;
-  min-width: 30%;
+  padding: 0 20rpx;
+  // padding-left: 10px ;
+  // padding-right: 0px ;
 }
 .language{
+  // display: flex;
+  // align-items: center;
+  // justify-content: center;
   font-weight: 550;
-  font-size: 15px;
-  padding-top:3px;
+  height: 65rpx;
+  line-height: 65rpx;
+  font-size: 28rpx;
+  width: 150rpx;
   white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 .copyIcon{
   width: 20px;
 }
 .translationBut{
-  border: 3px solid rgb(87, 79, 194);
+  height: 65rpx;
+  background: #6258eb;
+  color: #fff;
+  border: 8rpx solid #6258eb;
   display: flex;
   justify-content: center;
   align-items: center;
   border-radius:10px;
-  min-width: 24%;
-  margin-left: 33%;
-  font-size: 16px;
+  padding: 0 20rpx;
+  font-size: 28rpx;
   font-weight: 550;
 }
 #top{
   background-color: rgb(98, 88, 235);
-  height: 10vh;
+  height: 300rpx;
   width: 100%;
-}
-.mainBody{
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  border-bottom-left-radius: 100rpx 10rpx;
+  border-bottom-right-radius: 100rpx 10rpx;
+  box-sizing: border-box;
+  padding: 0 40rpx;
+  overflow: hidden;
+  .logo{
+    width: 100%;
+    color: #fff;
+    margin-top: 40rpx;
+  }
 }

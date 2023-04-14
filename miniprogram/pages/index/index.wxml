@@ -1,35 +1,62 @@
 <view class="container">
-<view id="top">
-</view>
-  <view class="content">
+  <van-dialog
+    use-slot
+    title="提示"
+    show-confirm-button="{{false}}"
+    show="{{ dialog_show }}"
+    confirm-button-open-type="getUserInfo"
+    bind:close="onClose"
+    bind:getuserinfo="getUserInfo"
+  >
+    <view class="dialog_title">当前未登录，是否登录</view>
+    <view class="dialog_inner">
+      <view class="dialog_btn cancel">取消</view>
+      <button class="dialog_btn button" bindtap="getUserProfile">确定</button>
+    </view>
+  </van-dialog>
+  <view id="top">
+    <view class="logo">Ai人工智能翻译</view>
+  </view>
+  <!-- 弹出层 -->
+  <van-popup 
+    show="{{ select_pop }}" 
+    position="top" 
+    bind:close="close_pop"
+  >
+    <van-picker
+      show-toolbar
+      columns="{{ languageOptions }}"
+      default-index="{{ selectIndex }}"
+      bind:cancel="onCancel"
+      bind:confirm="onConfirm"
+    />
+  </van-popup>
+  <scroll-view scroll-y class="content">
     <view class="mainBody">
-        <view class="input-wrapper">
-          <textarea class="input-area" placeholder="请输入需要翻译的文字" bindinput="onInput" maxlength="2048"></textarea>
-          <view class="icon-buttons">
-            <button class="icon-button" wx:if="inputBut" bindtap="onVoiceInput">
-              <image class="icon" src="../../public/语音.png" mode="aspectFit"></image>
-            </button>
-            <button class="icon-button" bindtap="onImageUpload">
-              <image class="icon" src="../../public/imageUp.png" mode="aspectFit"></image>
-            </button>
-          </view>
-          <view class="TranButBlock">
-          </view>
+      <view class="input-wrapper">
+        <textarea class="input-area" placeholder="请输入需要翻译的文字" bindinput="onInput" maxlength="2048"></textarea>
+        <view class="icon-buttons">
+          <button class="icon-button" wx:if="inputBut" bindtap="speech_input">
+            <image class="icon" src="../../public/speech.png" mode="aspectFit"></image>
+          </button>
+          <button class="icon-button" bindtap="onImageUpload">
+            <image class="icon" src="../../public/imageUp.png" mode="aspectFit"></image>
+          </button>
         </view>
-        <view class="center-wrapper">
-            <view>
-            </view>
-            <view class="translationBut">
-              翻译为
-            </view>
-            <button class="selectBut" bindtap="onVoiceInput">
-              <view class="language">
-                {{nowLanguage}}
-              </view>
-              <image class="icon selectIcon" src="../../public/option.png" mode="aspectFit"></image>
-            </button>
+      </view>
+      <view class="center-wrapper">
+        <view style="width: 230rpx;">
         </view>
-        <view class="output-wrapper">
+        <view class="translationBut" bindtap="translate">翻译为</view>
+        <view class="selectBut" bindtap="onVoiceInput">
+          <view class="language">
+            {{languageOptions[selectIndex]}}
+          </view>
+          <van-icon name="arrow-down" />
+          <!-- <image class="icon selectIcon" src="../../public/option.png" mode="aspectFit"></image> -->
+        </view>
+      </view>
+      <view class="output-wrapper">
           <textarea class="input-area" disabled bindinput="onInput"  maxlength="4096"></textarea>
           <view class="icon-buttons">
             <button class="icon-button" bindtap="onImageUpload">
@@ -38,7 +65,7 @@
           </view>
           <view class="TranButBlock">
           </view>
-        </view>
+      </view>
     </view>
-  </view>
+  </scroll-view>
 </view>
