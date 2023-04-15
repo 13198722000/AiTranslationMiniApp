@@ -1,13 +1,40 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs"
+    "pages/user/user"
   ],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle": "black"
+  },
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "permission": {
+    "scope.userInfo": {
+      "desc": "用于获取您的基本信息"
+    }
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#574FC2",
+    "backgroundColor": "#FFFFFF",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "./public/homeSel.png",
+        "selectedIconPath": "./public/homeDef.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "个人中心",
+        "iconPath": "./public/userSel.png",
+        "selectedIconPath": "./public/userDef.png"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json"

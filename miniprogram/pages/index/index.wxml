@@ -15,7 +15,10 @@
     </view>
   </van-dialog>
   <view id="top">
-    <view class="logo">Ai人工智能翻译</view>
+    <view class="logo-container">
+      <image class="logo-icon" src="../../public/logo.png" />
+      <text class="logo-text">Ai人工智能翻译</text>
+    </view>
   </view>
   <!-- 弹出层 -->
   <van-popup 
@@ -29,12 +32,13 @@
       default-index="{{ selectIndex }}"
       bind:cancel="onCancel"
       bind:confirm="onConfirm"
+      bind:clickItem="clickItem"
     />
   </van-popup>
   <scroll-view scroll-y class="content">
     <view class="mainBody">
       <view class="input-wrapper">
-        <textarea class="input-area" placeholder="请输入需要翻译的文字" bindinput="onInput" maxlength="2048"></textarea>
+        <textarea class="input-area" placeholder="请输入需要翻译的文字" bindinput="onInput" maxlength="4000"></textarea>
         <view class="icon-buttons">
           <button class="icon-button" wx:if="inputBut" bindtap="speech_input">
             <image class="icon" src="../../public/speech.png" mode="aspectFit"></image>
