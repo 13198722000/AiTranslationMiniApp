@@ -5,7 +5,55 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user_info:{},
+    quota_pop_show: false
+  },
 
+  // 获取额度，显示弹出层
+  show_quota(){
+    this.setData({
+      quota_pop_show: true
+    })
+  },
+  close_quota(){
+    this.setData({
+      quota_pop_show: false
+    })
+  },
+
+  // 登录
+  login(){
+    wx.getUserProfile({
+      desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        wx.showToast({
+          icon: 'none',
+          title: '登录成功'
+        })
+        wx.setStorageSync('userInfo', res.userInfo)
+        this.setData({
+          user_info: res.userInfo
+        })
+      }
+    })
+  },
+
+  // 退出登录
+  logout(){
+    wx.showModal({
+      title: '退出登录',
+      content: '您确定要退出登录吗?',
+      success: (res) => {
+        if (res.confirm) {
+          wx.removeStorageSync('userInfo')
+          this.setData({
+            user_info: {}
+          })
+        } else if (res.cancel) {
+          console.log('用户点击取消')
+        }
+      }
+    })
   },
 
   /**
@@ -26,7 +74,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    let user_info = wx.getStorageSync('userInfo') || {}
+    this.setData({
+      user_info
+    })
   },
 
   /**
