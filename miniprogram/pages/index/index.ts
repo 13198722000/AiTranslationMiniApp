@@ -70,6 +70,21 @@ Page({
   // 点击翻译
   translate() {
     this.checkLogin();
+    wx.request({
+        url: 'https://your-server.com/api/your-endpoint',
+        method: 'POST',
+        data: {
+          openId:"123123",
+          content:""
+        },
+        success: (result) => {
+          // 翻译成功
+          console.log("用户OpenID：");
+        },
+        fail: (error) => {
+          console.error("翻译失败", error);
+        }
+      });
   },
 
   // 事件处理函数

@@ -5,7 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    user_info:{},
     quota_pop_show: false
   },
 
@@ -37,25 +36,6 @@ Page({
       }
     })
   },
-
-  // 退出登录
-  // logout(){
-  //   wx.showModal({
-  //     title: '退出登录',
-  //     content: '您确定要退出登录吗?',
-  //     success: (res) => {
-  //       if (res.confirm) {
-  //         wx.removeStorageSync('userInfo')
-  //         this.setData({
-  //           user_info: {}
-  //         })
-  //       } else if (res.cancel) {
-  //         console.log('用户点击取消')
-  //       }
-  //     }
-  //   })
-  // },
-
   /**
    * 生命周期函数--监听页面加载
    */
