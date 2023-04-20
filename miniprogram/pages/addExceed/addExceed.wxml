@@ -1,0 +1,21 @@
+<van-transition show="{{ quota_pop_show }}">
+  <view class="pop_inner">
+    <view class="pop_title">
+      <view>获取额度</view>
+      <view class="close" bindtap="close_quota">
+        <van-icon name="cross" size="36rpx" />
+      </view>
+    </view>
+    <van-cell-group>
+      <van-cell title="充值额度" is-link>
+        <van-icon style="margin-right: 10rpx;" slot="icon" name="gold-coin" size="40rpx" color="rgb(255, 144, 0)" />
+      </van-cell>
+      <van-cell title="分享免费送" is-link>
+        <van-icon style="margin-right: 10rpx;" slot="icon" name="share" size="40rpx" color="rgb(255, 104, 106)" />
+      </van-cell>
+      <van-cell title="看广告免费送" is-link>
+        <van-icon style="margin-right: 10rpx;" slot="icon" name="video" size="40rpx" color="rgb(2, 107, 255)" />
+      </van-cell>
+    </van-cell-group>
+  </view>
+</van-transition>

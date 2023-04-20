@@ -34,10 +34,10 @@
         <view wx:if="{{user_info.nickName}}">{{user_info.nickName}}</view>
         <view wx:else bindtap="login">登录</view>
       </view>
-      <view wx:if="{{user_info.nickName}}" class="logout" bindtap="logout">退出登录</view>
+      <!-- <view wx:if="{{user_info.nickName}}" class="logout" bindtap="logout">退出登录</view> -->
     </view>
     <view class="quota_wrapper">
-      <view class="message">剩余翻译次数</view>
+      <view class="message">欢迎 ~ 可用翻译次数：</view>
       <view class="quota_inner">
         <view class="num">{{1}}次</view>
         <view class="get_quota" bindtap="show_quota">
