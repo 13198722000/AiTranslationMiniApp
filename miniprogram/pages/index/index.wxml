@@ -10,7 +10,7 @@
   >
     <view class="dialog_title">当前未登录，是否登录</view>
     <view class="dialog_inner">
-      <view class="dialog_btn cancel">取消</view>
+      <view class="dialog_btn cancel" bindtap="cancel_login">取消</view>
       <button class="dialog_btn button" bindtap="getUserProfile">确定</button>
     </view>
   </van-dialog>

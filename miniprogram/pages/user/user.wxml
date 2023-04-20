@@ -1,2 +1,50 @@
-<!--pages/user/user.wxml-->
-<text>pages/user/user.wxml</text>
+<view class="user_wrapper">
+  <view class="quota_pop" wx:if="{{quota_pop_show}}">
+    <van-transition show="{{ quota_pop_show }}">
+      <view class="pop_inner">
+        <view class="pop_title">
+          <view>获取额度</view>
+          <view class="close" bindtap="close_quota">
+            <van-icon name="cross" size="36rpx" />
+          </view>
+        </view>
+        <van-cell-group>
+          <van-cell title="充值额度" is-link>
+            <van-icon style="margin-right: 10rpx;" slot="icon" name="gold-coin" size="40rpx" color="rgb(255, 144, 0)" />
+          </van-cell>
+          <van-cell title="分享免费送" is-link>
+            <van-icon style="margin-right: 10rpx;" slot="icon" name="share" size="40rpx" color="rgb(255, 104, 106)" />
+          </van-cell>
+          <van-cell title="看广告免费送" is-link>
+            <van-icon style="margin-right: 10rpx;" slot="icon" name="video" size="40rpx" color="rgb(2, 107, 255)" />
+          </van-cell>
+        </van-cell-group>
+      </view>
+    </van-transition>
+  </view>
+  <view class="banner"></view>
+  <view class="user_inner">
+    <view class="info">
+      <view class="avatar">
+        <image wx:if="{{user_info.avatarUrl}}" src="{{user_info.avatarUrl}}" mode=""/>
+        <van-icon wx:else name="manager" color="#21D4FD" size="50rpx" />
+        <!-- <image wx:else src="../../public/logo.png" mode=""/> -->
+      </view>
+      <view class="name">
+        <view wx:if="{{user_info.nickName}}">{{user_info.nickName}}</view>
+        <view wx:else bindtap="login">登录</view>
+      </view>
+      <view wx:if="{{user_info.nickName}}" class="logout" bindtap="logout">退出登录</view>
+    </view>
+    <view class="quota_wrapper">
+      <view class="message">剩余翻译次数</view>
+      <view class="quota_inner">
+        <view class="num">{{1}}次</view>
+        <view class="get_quota" bindtap="show_quota">
+          获取额度
+          <van-icon name="arrow" size="32rpx" />
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

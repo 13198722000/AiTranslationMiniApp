@@ -31,6 +31,13 @@ Page({
     })
   },
 
+  // 取消登录
+  cancel_login(){
+    this.setData({
+      dialog_show: false
+    })
+  },
+
   clickItem(v) {
     this.setData({
       selectIndex: v.detail.index,
