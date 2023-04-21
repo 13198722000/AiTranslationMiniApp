@@ -7,8 +7,9 @@ Page({
     dialog_show: false,
     showOptions: false,
     select_pop: false,
-    languageOptions: ['英语', '中文（简体）', '中文（繁体）', '日语', '韩语', '法语', '西班牙语', '意大利语', '德语', '土耳其语', '俄语', '葡萄牙语', '越南语', '印尼语', '泰语', '马来语', '阿拉伯语', '荷兰语', '希腊语', '瑞典语', '挪威语', '丹麦语', '波兰语', '匈牙利语'],
-    nowLanguage: "英语",
+    textareaValue: '' ,
+    languageOptions: [["英语", "EN"], ["中文（简体）", "ZH-CN"], ["中文（繁体）", "ZH-TW"], ["日语", "JA"], ["韩语", "KO"], ["法语", "FR"], ["西班牙语", "ES"], ["意大利语", "IT"], ["德语", "DE"], ["土耳其语", "TR"], ["俄语", "RU"], ["葡萄牙语", "PT"], ["越南语", "VI"], ["印尼语", "ID"], ["泰语", "TH"], ["马来语", "MS"], ["阿拉伯语", "AR"], ["荷兰语", "NL"], ["希腊语", "EL"], ["瑞典语", "SV"], ["挪威语", "NO"], ["丹麦语", "DA"], ["波兰语", "PL"], ["匈牙利语", "HU"]],
+    nowLanguage: ["英语", "EN"],
     selectIndex: 0,
     inputBut: true,
     motto: '欢迎使用Ai人工智能翻译',
@@ -30,7 +31,12 @@ Page({
       select_pop: false
     })
   },
-
+  // 输入事件处理函数，每次输入都会触发
+  onInput: function(event) {
+    this.setData({
+      textareaValue: event.detail.value // 将 textarea 的值存入 data 中
+    });
+  },
   // 取消登录
   cancel_login(){
     this.setData({
@@ -69,22 +75,26 @@ Page({
 
   // 点击翻译
   translate() {
+    const selIndex = this.data.selectIndex
+    console.log("nowLanguage",this.data.languageOptions[selIndex][1]);
+    console.log("textareaValue",this.data.textareaValue);
     this.checkLogin();
-    wx.request({
-        url: 'https://your-server.com/api/your-endpoint',
-        method: 'POST',
-        data: {
-          openId:"123123",
-          content:""
-        },
-        success: (result) => {
-          // 翻译成功
-          console.log("用户OpenID：");
-        },
-        fail: (error) => {
-          console.error("翻译失败", error);
-        }
-      });
+    // wx.request({
+    //     url: 'https://your-server.com/api/your-endpoint',
+    //     method: 'POST',
+    //     data: {
+    //       openId:"123123",
+    //       content:"",
+    //       language:this.data.nowLanguage[1]
+    //     },
+    //     success: (result) => {
+    //       // 翻译成功
+    //       console.log("用户OpenID：");
+    //     },
+    //     fail: (error) => {
+    //       console.error("翻译失败", error);
+    //     }
+    //   });
   },
 
   // 事件处理函数

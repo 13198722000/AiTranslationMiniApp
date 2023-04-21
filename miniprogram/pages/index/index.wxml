@@ -26,7 +26,7 @@
     position="top" 
     bind:close="close_pop"
   >
-    <van-picker
+    <picker
       show-toolbar
       columns="{{ languageOptions }}"
       default-index="{{ selectIndex }}"
@@ -54,7 +54,7 @@
         <view class="translationBut" bindtap="translate">翻译为</view>
         <view class="selectBut" bindtap="onVoiceInput">
           <view class="language">
-            {{languageOptions[selectIndex]}}
+            {{languageOptions[selectIndex][0]}}
           </view>
           <van-icon name="arrow-down" />
           <!-- <image class="icon selectIcon" src="../../public/option.png" mode="aspectFit"></image> -->
