@@ -1,9 +1,12 @@
-// index.ts
-// 获取应用实例
+import Dialog from '../../miniprogram_npm/@vant/weapp/dialog/dialog';
+// 获取应用实例;
+
 const app = getApp<IAppOption>()
 
 Page({
   data: {
+    translationRes:'',
+    warnShow: false,
     dialog_show: false,
     showOptions: false,
     select_pop: false,
@@ -25,6 +28,35 @@ Page({
       select_pop: true
     })
   },
+  
+  // 清空需要翻译的内容
+  clearInput(){
+    this.setData({
+      textareaValue: '',
+      inputBut:true
+    })
+  },
+  // 
+  copyTranslationRes(){
+    wx.setClipboardData({
+      data: this.data.translationRes,
+      success: function(res) {
+        wx.showToast({
+          title: '复制成功',
+          icon: 'success',
+          duration: 600
+        });
+      },
+      fail: function(res) {
+        wx.showToast({
+          title: '复制失败',
+          icon: 'none',
+          duration: 1000
+        });
+      }
+    });
+  },
+
   // 关闭弹出层
   close_pop() {
     this.setData({
@@ -32,9 +64,10 @@ Page({
     })
   },
   // 输入事件处理函数，每次输入都会触发
-  onInput: function(event) {
+  onInput: function(event : any) {
+    const inputVal = event.detail.value
     this.setData({
-      textareaValue: event.detail.value // 将 textarea 的值存入 data 中
+      textareaValue: inputVal // 将 textarea 的值存入 data 中
     });
   },
   // 取消登录
@@ -44,7 +77,7 @@ Page({
     })
   },
 
-  clickItem(v) {
+  clickItem(v : any) {
     this.setData({
       selectIndex: v.detail.index,
       select_pop: false
@@ -53,7 +86,7 @@ Page({
   },
 
   // 弹出层确定
-  onConfirm(e) {
+  onConfirm(e : any) {
     let { index } = e.detail
     this.setData({
       select_pop: false,
@@ -75,26 +108,39 @@ Page({
 
   // 点击翻译
   translate() {
+    const textareaValue = this.data.textareaValue
+    if(textareaValue == ''){
+      Dialog.alert({
+        message: '请输入需要翻译的内容',
+        closeOnClickOverlay:true
+      }).then(() => {
+        return
+      });
+      return
+    }
     const selIndex = this.data.selectIndex
     console.log("nowLanguage",this.data.languageOptions[selIndex][1]);
     console.log("textareaValue",this.data.textareaValue);
     this.checkLogin();
-    // wx.request({
-    //     url: 'https://your-server.com/api/your-endpoint',
-    //     method: 'POST',
-    //     data: {
-    //       openId:"123123",
-    //       content:"",
-    //       language:this.data.nowLanguage[1]
-    //     },
-    //     success: (result) => {
-    //       // 翻译成功
-    //       console.log("用户OpenID：");
-    //     },
-    //     fail: (error) => {
-    //       console.error("翻译失败", error);
-    //     }
-    //   });
+    wx.request({
+        url: 'https://www.fastmock.site/mock/8c5c4f204fd14878b2217c7f18421191/api/translation',
+        method: 'POST',
+        data: {
+          openId:"123123",
+          content:"",
+          language:this.data.nowLanguage[1]
+        },
+        success: (result) => {
+          // 翻译成功
+          console.log("翻译成功",result);
+          this.setData({
+            translationRes: result.data.content
+          })
+        },
+        fail: (error) => {
+          console.error("翻译失败", error);
+        }
+      });
   },
 
   // 事件处理函数

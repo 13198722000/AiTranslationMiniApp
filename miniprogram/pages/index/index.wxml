@@ -14,6 +14,7 @@
       <button class="dialog_btn button" bindtap="getUserProfile">确定</button>
     </view>
   </van-dialog>
+  <van-dialog id="van-dialog" class="warnAlert"/>
   <view id="top">
     <view class="logo-container">
       <image class="logo-icon" src="../../public/logo.png" />
@@ -38,13 +39,16 @@
   <scroll-view scroll-y class="content">
     <view class="mainBody">
       <view class="input-wrapper">
-        <textarea class="input-area" placeholder="请输入需要翻译的文字" bindinput="onInput" maxlength="4000"></textarea>
+        <textarea class="input-area" placeholder="请输入需要翻译的内容" bindinput="onInput" value="{{textareaValue}}" maxlength="4000" ></textarea>
         <view class="icon-buttons">
-          <button class="icon-button" wx:if="inputBut" bindtap="speech_input">
+          <button class="icon-button" wx:if="{{!textareaValue}}" bindtap="speech_input">
             <image class="icon" src="../../public/speech.png" mode="aspectFit"></image>
           </button>
-          <button class="icon-button" bindtap="onImageUpload">
+          <button class="icon-button" bindtap="onImageUpload" wx:if="{{!textareaValue}}">
             <image class="icon" src="../../public/imageUp.png" mode="aspectFit"></image>
+          </button>
+          <button class="icon-button clearBut" bindtap="clearInput" wx:else>
+            <image class="icon" src="../../public/close.png" mode="aspectFit"></image>
           </button>
         </view>
       </view>
@@ -61,9 +65,9 @@
         </view>
       </view>
       <view class="output-wrapper">
-          <textarea class="input-area" disabled bindinput="onInput"  maxlength="4096"></textarea>
-          <view class="icon-buttons">
-            <button class="icon-button" bindtap="onImageUpload">
+          <textarea class="input-area" disabled value="{{translationRes}}"  maxlength="4096"></textarea>
+          <view class="icon-buttons" >
+            <button class="icon-button" bindtap="copyTranslationRes" wx:if="{{translationRes}}">
               <image class="icon copyIcon" src="../../public/copy.png" mode="aspectFit"></image>
             </button>
           </view>
